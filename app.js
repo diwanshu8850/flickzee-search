@@ -2,8 +2,6 @@ const express = require('express'),
       app = express(),
       bodyParser = require('body-parser'),
       ejs = require('ejs'),
-      request = require('request'),
-      rawData = require('./data.js'),
       mysql = require('mysql');
 
 
@@ -47,7 +45,7 @@ app.get('/movie', (req, res)=>{
                     search = name[i];
                 }
             }
-            console.log(search);
+//             console.log(search);
             connection.query(`SELECT title,poster FROM movies WHERE title LIKE '${search}%' OR title LIKE '%${search}%' OR title LIKE '%${search}' ORDER BY imdbRating DESC LIMIT 10`, function (err, result, fields) {
                 connection.release();
                 if (err) throw err;
